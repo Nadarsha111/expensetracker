@@ -153,7 +153,7 @@ declare interface HeaderBoxProps {
   title: string;
   subtext: string;
   user?: string;
-}
+} 
 
 declare interface MobileNavProps {
   user: User;
