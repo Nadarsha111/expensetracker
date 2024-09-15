@@ -10,11 +10,14 @@ import { Form } from "@/components/ui/form";
 import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
   const formSchema = authFormSchema(type);
-  const [user, setuser] = useState(null);
+  const [user, setUser] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
+
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -24,12 +27,16 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(data: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
       //sign up with appwrite & create plaid token
       if (type === "sign-in") {
-        setuser(values);
+        setUser(data);
+      }
+      if(type === "sign-up") {
+        // setUser(data);
+        // router.push("/");
       }
     } catch (error) {
       console.log(error);
