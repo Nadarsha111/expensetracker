@@ -198,7 +198,7 @@ export const getTransactionStatus = (date: Date) => {
 export const authFormSchema = (type) =>
   z.object({
     email: z.string().min(2, { message: "Email is required" }),
-    password: z.string().min(2, { message: "Password is required" }),
+    password: z.string().min(8, { message: "Password is required" }),
     // sign -up
 
     firstName: type === "sign-in" ? z.string().optional() : z.string().min(3, { message: "First name is required" }),
